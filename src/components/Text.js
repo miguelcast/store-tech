@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text as TextRN } from 'react-native';
+import { Text as TextUI } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
 
 const fontsFamilies = {
@@ -10,9 +10,9 @@ const fontsFamilies = {
 
 function Text({ variant = 'default', children }) {
   return (
-    <TextRN style={{ fontFamily: fontsFamilies[variant] }}>
+    <TextUI style={{ fontFamily: fontsFamilies[variant] }}>
       {children}
-    </TextRN>
+    </TextUI>
   );
 }
 

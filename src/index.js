@@ -3,10 +3,15 @@ import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
 
 import Navigation from './navigation';
 import apolloClient from './config/apollo';
-import store from './config/store';
+import makeStore from './config/store';
+
+const { store, persistor } = makeStore();
 
 function Index() {
   const [ isLoaded ] = useFonts({
@@ -21,9 +26,13 @@ function Index() {
 
   return (
     <Provider store={store}>
-      <ApolloProvider client={apolloClient}>
-        <Navigation />
-      </ApolloProvider>
+      <PersistGate loading={<AppLoading />} persistor={persistor}>
+        <ApolloProvider client={apolloClient}>
+          <ApplicationProvider {...eva} theme={eva.light}>
+            <Navigation />
+          </ApplicationProvider>
+        </ApolloProvider>
+      </PersistGate>
     </Provider>
   );
 }

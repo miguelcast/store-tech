@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Text from "../components/Text";
 import { logout } from '../store/authSlice';
+import ProductList from '../components/Product/List';
 
 function Home() {
   const dispatch = useDispatch();
@@ -16,12 +17,7 @@ function Home() {
       {!!userName && (
         <Button title="Cerrar sesión" onPress={() => dispatch(logout())} />
       )}
-      <Text variant="subtile">
-        Mobiles
-      </Text>
-      <Text>
-        The best mobile
-      </Text>
+      <ProductList />
     </SafeAreaView>
   );
 }

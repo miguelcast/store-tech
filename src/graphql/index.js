@@ -13,3 +13,15 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const PRODUCTS = gql`
+  query Products {
+    products {
+      id
+      name
+      description
+      image
+      price
+    }
+  }
+`;
